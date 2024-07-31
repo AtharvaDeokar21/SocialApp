@@ -2,7 +2,7 @@
 {% load static %}
 {% block body %}
     <div class="flex justify-center mt-5 p-6">
-        <h2 class="text-3xl font-normal mb-2 text-gray-500">My Posts</h2>
+        <h2 class="text-3xl font-normal mb-2 text-gray-500">My feed</h2>
     </div>
     <div class="grid mx-60 p-10 grid-cols-1">
         {% for post in posts %}
@@ -10,14 +10,17 @@
         <a href="">
             <div class="rounded overflow-hidden w-[470] h-[470] bg-white shadow-lg">
                 <div class="user-container flex mx-5 my-5">
-                    <img class="h-10 w-10 rounded-full" src="{{ profile.photo.url }}" alt="">
+                    <img class="h-10 w-10 rounded-full" src="{{ post.user.profile.photo.url }}" alt="">
                     <div class="mx-2 my-2 font-bold"><span class="text-indigo-500">{{ post.user }}</span></div>
                 </div>
-                <img src="{{ post.image.url }}" alt="">
+                <img class="h-full" src="{{ post.image.url }}" alt="">
             </div>
             <div class="px-6 py-4">
                 <div class="icon-container flex gap-3">
-                    <img class="w-5 h-5" src="{% static 'users/images/heart.png' %}" alt="">
+                    <a id="{{ post.id }}" class="btn-like">
+                        <img class="w-5 h-5" src="{% static 'users/images/heart.png' %}" alt="">
+                    </a>
+                    
                     <img class="w-5 h-5" src="{% static 'users/images/comment.png' %}" alt="">
                     <img class="w-5 h-5" src="{% static 'users/images/share.png' %}" alt="">
                 </div>

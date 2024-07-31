@@ -53,3 +53,5 @@ node_modules/
 # Ignore build output
 build/
 dist/
+
+.json
