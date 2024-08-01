@@ -54,4 +54,4 @@ node_modules/
 build/
 dist/
 
-.json
+*.json
