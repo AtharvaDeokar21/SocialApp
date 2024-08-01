@@ -1,23 +1,33 @@
 {% extends 'users/base.html' %}
 {% block body %}
-<h2 class="text-2xl m-10 font-bold">Create a Post</h2>
-<div class="container py-5 mx-10">
-    <form method="post" class="bg-white shadow-md m-10 px-8 rounded pt-5 pb-8 mb-4 w-4/5" enctype="multipart/form-data">
+<h2 class="text-2xl m-10 font-bold text-center">Create a Post</h2>
+<div class="container mx-auto px-4 md:px-0 flex justify-center items-center">
+    <form method="post" class="bg-white shadow-md px-8 py-6 rounded-lg w-full max-w-lg" enctype="multipart/form-data">
         {% csrf_token %}
-        <div class="mb-2">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="">Add Title</label>
-            <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700">{{ form.title }}</div>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="id_title">Add Title</label>
+            <div class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                {{ form.title }}
+            </div>
         </div>
-        <div class="mb-2">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="">Upload Image</label>
-            <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700">{{ form.image }}</div>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="id_image">Upload Image</label>
+            <div class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                {{ form.image }}
+            </div>
         </div>
-        <div class="mb-2">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="">Add Caption</label>
-            <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700">{{ form.caption }}</div>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="id_caption">Add Caption</label>
+            <div class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                {{ form.caption }}
+            </div>
         </div>
         
-        <button class="bg-green-500 text-white my-5 px-5 py-2" type="submit">Submit</button>
+        <div class="flex items-center justify-center">
+            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                Submit
+            </button>
+        </div>
     </form>
 </div>
 {% endblock %}
