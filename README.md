@@ -6,12 +6,30 @@ A Django-based social media application where users can create posts, like posts
 
 - User registration and authentication
 - User profile management
-- Create, read, update posts and profile.
+- Create, read, and update posts and profiles.
 - Like and comment on posts
 - Light/Dark mode toggle
 
 ## Demo
 Watch a video of the app in action [https://www.loom.com/share/a488cdffd4d447b883066abedeb9fe83?sid=f98d15ad-e366-4ceb-9861-31a976f8ea42].
+
+## Screenshots
+
+### Registration Page
+![Registration Page](screenshots/register.png)
+
+### Login Page
+![Login Page](screenshots/login.png)
+
+### Home Page
+![Home Page](screenshots/home.png)
+
+### Profile Page
+![Profile Page](screenshots/profile.png)
+
+### Create new post
+![Create Page](screenshots/create.png)
+
 
 ## Technologies Used
 
@@ -27,8 +45,8 @@ Watch a video of the app in action [https://www.loom.com/share/a488cdffd4d447b88
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/SocialMediaApp.git
-   cd SocialMediaApp
+   git clone https://github.com/AtharvaDeokar21/SocialApp.git
+   cd socialproject
    ```
 
 2. **Create and activate a virtual environment:**
@@ -85,7 +103,7 @@ Watch a video of the app in action [https://www.loom.com/share/a488cdffd4d447b88
 
 3. **Interact with posts:**
 
-    - Like & comment on user's post to interact.
+    - Like & comment on user's posts to interact.
 
 4. **Manage your profile:**
 
