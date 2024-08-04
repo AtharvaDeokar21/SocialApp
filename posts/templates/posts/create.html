@@ -2,29 +2,23 @@
 {% block body %}
 <h2 class="text-2xl m-10 font-bold text-center">Create a Post</h2>
 <div class="container mx-auto px-4 md:px-0 flex justify-center items-center">
-    <form method="post" class="bg-white shadow-md px-8 py-6 rounded-lg w-full max-w-lg" enctype="multipart/form-data">
+    <form method="post" class="bg-gray-100 dark:bg-gray-800 shadow-md px-8 py-6 rounded-lg w-full max-w-lg" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="id_title">Add Title</label>
-            <div class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                {{ form.title }}
-            </div>
+            <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="id_title">Add Title</label>
+            <input type="text" name="title" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" id="id_title" value="{{ form.title.value }}">
         </div>
         <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="id_image">Upload Image</label>
-            <div class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                {{ form.image }}
-            </div>
+            <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="id_image">Upload Image</label>
+            <input type="file" name="image" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" id="id_image">
         </div>
         <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="id_caption">Add Caption</label>
-            <div class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                {{ form.caption }}
-            </div>
+            <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="id_caption">Add Caption</label>
+            <textarea name="caption" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" id="id_caption">{{ form.caption.value }}</textarea>
         </div>
         
         <div class="flex items-center justify-center">
-            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" type="submit">
                 Submit
             </button>
         </div>

@@ -2,89 +2,93 @@
 {% load mathfilters %}
 {% load static %}
 {% block body %}
-    <div class="flex justify-center mt-5 p-6">
-        <h2 class="text-3xl font-normal mb-2 text-gray-500">My feed</h2>
-    </div>
-    <div class="container mx-auto px-4 md:px-0">
-        <div class="flex flex-col items-center space-y-6">
-            {% for post in posts %}
-            <!-- Card start here -->
-            <div class="rounded overflow-hidden bg-white shadow-lg w-full max-w-2xl transition-transform transform hover:scale-105">
-                <div class="user-container flex items-center p-5">
-                    <img class="h-10 w-10 rounded-full" src="{{ post.user.profile.photo.url }}" alt="{{ post.user }}">
-                    <div class="ml-3 font-bold">
-                        <span class="text-indigo-500">{{ post.user }}</span>
-                    </div>
-                </div>
-                <img class="w-full object-cover" style="height: 24rem;" src="{{ post.image.url }}" alt="">
-                <div class="p-5">
-                    <div class="icon-container flex gap-4 mb-2">
-                        <a id="{{ post.id }}" class="btn-like cursor-pointer">
-                            {% if logged_user in post.liked_by.all %}
-                            <img class="w-6 h-6" src="{% static 'users/images/redlike.png' %}" alt="Unlike">
-                            {% else %}
-                            <img class="w-6 h-6" src="{% static 'users/images/heart.png' %}" alt="Like">
-                            {% endif %}
-                        </a>
-                        <img class="w-6 h-6" src="{% static 'users/images/comment.png' %}" alt="Comment">
-                        <img class="w-6 h-6" src="{% static 'users/images/share.png' %}" alt="Share">
-                    </div>
-                    <div>
-                        {% if post.liked_by.count < 1 %}
-                        {% elif post.liked_by.count == 1 %}
-                        {{ post.liked_by.first }} likes this
-                        {% elif post.liked_by.count > 1 %}
-                        {{ post.liked_by.first }} & {{ post.liked_by.count|sub:1 }} others like this
-                        {% endif %}
-                    </div>
-                    <div class="mt-2 mb-4">
-                        <div class="font-bold text-xl">{{ post.title }}</div>
-                        <p class="text-gray-700 text-base">{{ post.caption }}</p>
-                    </div>
-                    <div class="comments mt-4">
-                        {% for comment in post.comments.all %}
-                        <div class="mb-2">
-                            <b>{{ comment.posted_by }} :</b> {{ comment.body }}
-                        </div>
-                        {% endfor %}
-                    </div>
-                    <div class="mt-4">
-                        <form method="post" class="flex items-center">
-                            {% csrf_token %}
-                            <div class="flex-grow">
-                                <textarea name="body" rows="1" class="border rounded w-full px-3 py-2">{{ comment_form.body.value }}</textarea>
-                            </div>
-                            <input type="hidden" name="post_id" value="{{ post.id }}">
-                            <input type="hidden" name="posted_by" value="{{ logged_user }}">
-                            <button class="bg-green-500 text-white px-5 py-2 ml-2 rounded" type="submit">Add</button>
-                        </form>
-                    </div>
+<div class="flex justify-center mt-5 p-6">
+    <h2 class="text-3xl font-normal mb-2 text-gray-500">My feed</h2>
+</div>
+<div class="container mx-auto px-4 md:px-0">
+    <div class="flex flex-col items-center space-y-6">
+        {% for post in posts %}
+        <!-- Card start here -->
+        <div class="card rounded overflow-hidden shadow-lg w-full max-w-2xl transition-transform transform hover:scale-105">
+            <div class="user-container flex items-center p-5">
+                {% if post.user.profile.photo %}
+                <img class="h-10 w-10 rounded-full" src="{{ post.user.profile.photo.url }}" alt="{{ post.user }}">
+                {% else %}
+                <img class="h-10 w-10 rounded-full" src="{% static 'path/to/default/photo.jpg' %}" alt="{{ post.user }}">
+                {% endif %}
+                <div class="ml-3 font-bold">
+                    <span class="text-indigo-500">{{ post.user }}</span>
                 </div>
             </div>
-            <!-- Card end here -->
-            {% endfor %}
+            <img class="w-full object-cover" style="height: 24rem;" src="{{ post.image.url }}" alt="">
+            <div class="p-5">
+                <div class="icon-container flex gap-4 mb-2">
+                    <a id="{{ post.id }}" class="btn-like cursor-pointer">
+                        {% if logged_user in post.liked_by.all %}
+                        <img class="w-6 h-6" src="{% static 'users/images/redlike.png' %}" alt="Unlike">
+                        {% else %}
+                        <img class="w-6 h-6" src="{% static 'users/images/heart.png' %}" alt="Like">
+                        {% endif %}
+                    </a>
+                    <img class="w-6 h-6" src="{% static 'users/images/comment.png' %}" alt="Comment">
+                    <img class="w-6 h-6" src="{% static 'users/images/share.png' %}" alt="Share">
+                </div>
+                <div>
+                    {% if post.liked_by.count < 1 %}
+                    {% elif post.liked_by.count == 1 %}
+                    {{ post.liked_by.first }} likes this
+                    {% elif post.liked_by.count > 1 %}
+                    {{ post.liked_by.first }} & {{ post.liked_by.count|sub:1 }} others like this
+                    {% endif %}
+                </div>
+                <div class="mt-2 mb-4">
+                    <div class="font-bold text-xl">{{ post.title }}</div>
+                    <p class="text-base">{{ post.caption }}</p>
+                </div>
+                <div class="comments mt-4">
+                    {% for comment in post.comments.all %}
+                    <div class="mb-2">
+                        <b>{{ comment.posted_by }} :</b> {{ comment.body }}
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="mt-4">
+                    <form method="post" class="flex items-center">
+                        {% csrf_token %}
+                        <div class="flex-grow">
+                            <textarea name="body" rows="1" class="border rounded w-full px-3 py-2">{{ comment_form.body.value }}</textarea>
+                        </div>
+                        <input type="hidden" name="post_id" value="{{ post.id }}">
+                        <input type="hidden" name="posted_by" value="{{ logged_user }}">
+                        <button class="bg-green-500 text-white px-5 py-2 ml-2 rounded" type="submit">Add</button>
+                    </form>
+                </div>
+            </div>
         </div>
+        <!-- Card end here -->
+        {% endfor %}
     </div>
-    <script type="text/javascript">
-        window.CSRF_TOKEN = "{{ csrf_token }}";
-        $(document).on('click', '.btn-like', function(e){
-            e.preventDefault();
-            var post_id = this.id;
-            $.ajax({
-                method: "POST",
-                url: "{% url 'like' %}",
-                data: {
-                    post_id: post_id,
-                    csrfmiddlewaretoken: window.CSRF_TOKEN
-                },
-                success: function(response) {
-                    // Reload or update the page content dynamically
-                    location.reload();
-                },
-                error: function(error) {
-                    console.log(error);
-                }
-            });
+</div>
+<script type="text/javascript">
+    window.CSRF_TOKEN = "{{ csrf_token }}";
+    $(document).on('click', '.btn-like', function(e){
+        e.preventDefault();
+        var post_id = this.id;
+        $.ajax({
+            method: "POST",
+            url: "{% url 'like' %}",
+            data: {
+                post_id: post_id,
+                csrfmiddlewaretoken: window.CSRF_TOKEN
+            },
+            success: function(response) {
+                // Reload or update the page content dynamically
+                location.reload();
+            },
+            error: function(error) {
+                console.log(error);
+            }
         });
-    </script>
+    });
+</script>
 {% endblock %}

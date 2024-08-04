@@ -1,0 +1,10 @@
+{% extends 'users/base.html' %}
+{% block body %}
+
+<div class="container py-5 text-center">
+    <h1 class="text-2xl font-bold mb-4">User authenticated and logged in</h1>
+    <a class="text-indigo-500 hover:underline mx-4" href="{% url 'create' %}">Create your first post!</a>
+    <a class="text-indigo-500 hover:underline mx-4" href="{% url 'feed' %}">Checkout your feed!</a>
+</div>
+
+{% endblock %}

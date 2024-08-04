@@ -12,6 +12,7 @@ class Post(models.Model):
     created = models.DateField(auto_now_add=True)
     liked_by = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='posts_liked', blank=True)
     
+    
     def __str__(self) -> str:
         return self.title
     

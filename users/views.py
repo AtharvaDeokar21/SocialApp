@@ -16,7 +16,7 @@ def user_login(request):
             user = authenticate(request, username = data['username'], password=data['password'])
             if user is not None:
                 login(request,user)
-                return HttpResponse("User authenticated and logged in")
+                return render(request, 'users/login_done.html')
             else:
                 return HttpResponse("Invalid credentials")
             
@@ -38,7 +38,7 @@ def index(request):
 
 def register(request):
     if request.method == 'POST':
-        user_form = UserRegistrationForm(request.POST)
+        user_form = UserRegistrationForm(request.POST, request.FILES)
         if user_form.is_valid():
             new_user = user_form.save(commit=False)
             new_user.set_password(user_form.cleaned_data['password'])

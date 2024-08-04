@@ -9,9 +9,60 @@
     <link rel="stylesheet" href="{% static 'users/new.css' %}">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-    <title>Photo App</title>
+    <title>PicStream</title>
+    <style>
+      /* Custom styles */
+      .light-mode {
+        --bg-color: #FDF6F0;  /* Very light grayish blue for a modern touch */
+        --text-color: #495057; /* Darker gray for text */
+        --card-bg: #F5F5F5;   /* Clean white for contrast */
+        --nav-bg: #F5E8E2;    /* Very light gray for navbar */
+        --nav-text: #495057;  /* Darker gray text for consistency */
+        --textarea-bg: #ffffff; /* Crisp white for textareas */
+        --textarea-border: #ced4da; /* Soft gray border */
+        --textarea-text: #495057; /* Matching text color */
+        --shadow-color: rgba(0, 0, 0, 0.1); /* Soft shadow for subtle depth */
+    }    
+    
+    .dark-mode {
+    --bg-color: #181C22;  /* Dark charcoal gray for a sleek background */
+    --text-color: #e0e0e0; /* Light gray for readability */
+    --card-bg: #1F2730;   /* Slightly lighter gray for cards */
+    --nav-bg: #262F38;       /* Medium gray for the navbar */
+    --nav-text: #f0f0f0;  /* Very light gray for navbar text */
+    --textarea-bg: #2c2c2c; /* Matching dark gray for textareas */
+    --textarea-border: #444; /* Subtle gray border for textareas */
+    --textarea-text: #e0e0e0; /* Light gray text in textarea */
+    --shadow-color: rgba(0, 0, 0, 0.4); /* Moderate shadow for depth */
+  }
+      
+      body, h2 {
+        background-color: var(--bg-color) !important; 
+        color: var(--text-color) !important; 
+      } 
+
+      .card {
+        background-color: var(--card-bg) !important;
+        box-shadow: 0 4px 8px var(--shadow-color) !important;
+      }
+
+      nav {
+        background-color: var(--nav-bg) !important;
+      }
+
+      a,button, span {
+        color: var(--nav-text) !important;
+      }
+
+      textarea {
+        background-color: var(--textarea-bg) !important;
+        border: 1px solid var(--textarea-border) !important;
+        color: var(--textarea-text) !important;
+      }
+
+    </style>
   </head>
-  <body>
+  <body class="dark-mode">
     <nav class="shadow-lg">
       <div class="container mx-auto px-4">
         <div class="flex justify-between items-center py-4">
@@ -19,11 +70,11 @@
           <div>
             <a class="flex items-center" href="{% url 'feed' %}">
               <img class="h-8 w-8 mr-2" src="{% static 'users/images/social.png' %}" alt="Photo App Logo">
-              <span class="font-semibold text-lg text-gray-500">Photo App</span>
+              <span class="font-semibold text-lg text-gray-500">PicStream</span>
             </a>
           </div>
           <!-- Website items -->
-          <div class="space-x-4">
+          <div class=" nava space-x-4">
             <a class="py-2 px-4 text-gray-500 font-semibold hover:text-gray-700 transition" href="{% url 'feed' %}">Home</a>
             <a class="py-2 px-4 text-gray-500 font-semibold hover:text-gray-700 transition" href="{% url 'create' %}">Create</a>
             <a class="py-2 px-4 text-gray-500 font-semibold hover:text-gray-700 transition" href="{% url 'index' %}">Profile</a>
@@ -32,12 +83,22 @@
             {% else %}
               <a class="py-2 px-4 text-gray-500 font-semibold hover:text-gray-700 transition" href="{% url 'login' %}">Login</a>
             {% endif %} 
+            <!-- Dark/Light mode toggle -->
+            <button id="toggle-mode" class="py-2 px-4 text-gray-500 font-semibold hover:text-gray-700 transition">Dark/Light</button>
           </div>
         </div>
       </div>
     </nav>
 
     {% block body %}{% endblock %}
-    
+
+    <script>
+      const toggleButton = document.getElementById('toggle-mode');
+      toggleButton.addEventListener('click', () => {
+        const body = document.body;
+        body.classList.toggle('light-mode');
+        body.classList.toggle('dark-mode');
+      });
+    </script>
   </body>
 </html>

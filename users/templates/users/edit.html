@@ -1,28 +1,28 @@
 {% extends 'users/base.html' %}
 {% block body %}
-<h2 class="text-2xl m-10 font-bold">Edit profile form</h2>
-<div class="container py-5 mx-10">
-    <form class="bg-white shadow-md m-10 px-8 rounded pt-5 pb-8 mb-4 w-4/5" method="post" enctype="multipart/form-data">
+
+<h2 class="text-2xl m-10 font-bold text-center">Edit Profile</h2>
+<div class="container py-5 flex justify-center items-center">
+    <form class="bg-gray-100 dark:bg-gray-800 shadow-md w-full max-w-lg rounded px-8 pt-6 pb-8 mb-4" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <div class="mb-2">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="">First name</label>
-            <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700">{{ user_form.first_name}}</div>
+        <div class="mb-4">
+            <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="id_first_name">First Name</label>
+            <input type="text" name="first_name" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" id="id_first_name" value="{{ user_form.first_name.value }}">
         </div>
-        <div class="mb-2">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="">Last name</label>
-            <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700">{{ user_form.last_name}}</div>
+        <div class="mb-4">
+            <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="id_last_name">Last Name</label>
+            <input type="text" name="last_name" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" id="id_last_name" value="{{ user_form.last_name.value }}">
         </div>
-        <div class="mb-2">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="">Email</label>
-            <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700">{{ user_form.email}}</div>
+        <div class="mb-4">
+            <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="id_email">Email</label>
+            <input type="email" name="email" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" id="id_email" value="{{ user_form.email.value }}">
         </div>
-        <div class="mb-2">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="">Photo</label>
-            <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700">{{ profile_form.photo}}</div>
+        <div class="mb-4">
+            <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="id_photo">Photo</label>
+            <input type="file" name="photo" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" id="id_photo">
         </div>
-        <button class="bg-green-500 text-white my-5 px-5 py-2" type="submit">Submit</button>
+        <button class="bg-green-500 hover:bg-green-700 text-white px-5 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" type="submit">Submit</button>
     </form>
 </div>
-
 
 {% endblock %}
