@@ -11,7 +11,7 @@ A Django-based social media application where users can create posts, like posts
 - Light/Dark mode toggle
 
 ## Demo
-Watch a video of the app in action [here](https://www.loom.com/share/a488cdffd4d447b883066abedeb9fe83?sid=f98d15ad-e366-4ceb-9861-31a976f8ea42).
+Watch a video of the app in action [https://www.loom.com/share/a488cdffd4d447b883066abedeb9fe83?sid=f98d15ad-e366-4ceb-9861-31a976f8ea42].
 
 ## Technologies Used
 
